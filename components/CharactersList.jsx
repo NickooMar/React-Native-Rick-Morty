@@ -16,16 +16,16 @@ const CharactersList = () => {
     loadCharacters();
   }, []);
 
-  //   const renderItem = ({ item }) => {
-  //     return <CharacterItem character={item} />;
-  //   };
-
   return (
     <FlatList
       style={{ width: "100%" }}
-      data={characters}|
+      data={characters}
       keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <CharacterItem character={item} />}
+      renderItem={({ item }) => <CharacterItem character={item} />}
+      contentContainerStyle={{ alignSelf: "center" }}
+      numColumns={2}
+      showsVerticalScrollIndicator={false}
+      showsHorizontalScrollIndicator={false}
     />
   );
 };
