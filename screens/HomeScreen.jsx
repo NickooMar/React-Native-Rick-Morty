@@ -68,6 +68,7 @@ const HomeScreen = () => {
                 ...styles.cardContentButton,
                 backgroundColor: "#B7E4F9FF",
               }}
+              onPress={() => navigation.navigate("Characters")}
             >
               <Text
                 style={{
@@ -105,7 +106,7 @@ const HomeScreen = () => {
                   textAlign: "center",
                   fontSize: 16,
                   fontFamily: "SourceSansPro_Regular",
-                  color: 'white'
+                  color: "white",
                 }}
               >
                 Show More

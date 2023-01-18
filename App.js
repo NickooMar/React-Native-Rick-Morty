@@ -44,15 +44,7 @@ export default function App() {
               alignSelf: "center",
               fontFamily: "SourceSansPro_SemiBold",
             },
-            // headerRight: () => (
-            //   <TouchableOpacity
-            //     onPress={() => navigation.navigate("Characters")}
-            //   >
-            //     <Text style={{ color: "#fff", fontSize: 16 }}>
-            //       👤Characters
-            //     </Text>
-            //   </TouchableOpacity>
-            // ),
+            headerTintColor: "white",
           })}
         />
         <Stack.Screen
@@ -67,6 +59,7 @@ export default function App() {
               alignSelf: "center",
               fontFamily: "SourceSansPro_SemiBold",
             },
+            headerTintColor: "white",
           })}
         />
         <Stack.Screen
@@ -81,6 +74,7 @@ export default function App() {
               alignSelf: "center",
               fontFamily: "SourceSansPro_SemiBold",
             },
+            headerTintColor: "white",
           })}
         />
       </Stack.Navigator>
