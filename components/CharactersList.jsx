@@ -27,6 +27,7 @@ const CharactersList = () => {
       .then((resJson) => {
         setData(data.concat(resJson?.results));
         setIsLoading(false);
+        setPage(page + 1);
       });
   };
 
@@ -36,7 +37,6 @@ const CharactersList = () => {
   }, []);
 
   const handleLoadMore = async () => {
-    setPage(page + 1);
     getData();
     setIsLoading(true);
   };

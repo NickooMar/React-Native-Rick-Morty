@@ -18,6 +18,7 @@ const CharacterItem = ({ character }) => {
       >
         {character.status}
       </Text>
+      <Text style={styles.cardIDTag}>{character.id}</Text>
       <View style={styles.cardTextMargin}>
         <Text style={styles.cardTitle}>{character.name}</Text>
         <Text style={styles.cardParagraph}>
@@ -58,6 +59,7 @@ const styles = StyleSheet.create({
     width: "100%",
     height: 250,
     position: "relative",
+    borderRadius: 10,
   },
   cardStatusTagAlive: {
     position: "absolute",
@@ -76,6 +78,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     fontSize: 14,
     backgroundColor: "#ea4747",
+  },
+  cardIDTag: {
+    position: "absolute",
+    padding: 2,
+    right: 0,
+    color: "white",
+    borderRadius: 5,
+    fontSize: 14,
+    backgroundColor: "#b9c644",
+    overflow: "hidden",
   },
   cardTextMargin: {
     marginTop: 5,
