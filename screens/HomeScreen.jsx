@@ -154,7 +154,7 @@ export default HomeScreen;
 const styles = StyleSheet.create({
   backgroundContainer: {
     width: "100%",
-    height: 220,
+    height: 205,
     position: "absolute",
   },
   backgroundImage: {
