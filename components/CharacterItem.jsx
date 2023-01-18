@@ -1,11 +1,23 @@
 import { View, Text, StyleSheet, Image, TouchableOpacity } from "react-native";
 import React from "react";
 
+import { useNavigation } from "@react-navigation/native";
+
 const CharacterItem = ({ character }) => {
+  const navigation = useNavigation();
+
   return (
     <View style={styles.card}>
       <Image source={{ uri: character.image }} style={styles.cardImage} />
-      <Text style={styles.cardStatusTag}>{character.status}</Text>
+      <Text
+        style={[
+          character.status.includes("Alive")
+            ? styles.cardStatusTagAlive
+            : styles.cardStatusTagDeath,
+        ]}
+      >
+        {character.status}
+      </Text>
       <View style={styles.cardTextMargin}>
         <Text style={styles.cardTitle}>{character.name}</Text>
         <Text style={styles.cardParagraph}>
@@ -16,8 +28,15 @@ const CharacterItem = ({ character }) => {
           <Text style={styles.cardCharacterProperties}>Location: </Text>
           {character.location.name}
         </Text>
+        <Text style={styles.cardParagraph}>
+          <Text style={styles.cardCharacterProperties}>Origin: </Text>
+          {character.origin.name}
+        </Text>
       </View>
-      <TouchableOpacity style={styles.cardDetailButton}>
+      <TouchableOpacity
+        style={styles.cardDetailButton}
+        onPress={() => navigation.navigate("CharacterDetail", character.id)}
+      >
         <Text style={styles.cardDetailText}>View More</Text>
       </TouchableOpacity>
     </View>
@@ -40,14 +59,23 @@ const styles = StyleSheet.create({
     height: 250,
     position: "relative",
   },
-  cardStatusTag: {
+  cardStatusTagAlive: {
     position: "absolute",
     padding: 2,
     margin: 5,
-    backgroundColor: "red",
     color: "white",
     borderRadius: 5,
     fontSize: 14,
+    backgroundColor: "#2ca935",
+  },
+  cardStatusTagDeath: {
+    position: "absolute",
+    padding: 2,
+    margin: 5,
+    color: "white",
+    borderRadius: 5,
+    fontSize: 14,
+    backgroundColor: "#ea4747",
   },
   cardTextMargin: {
     marginTop: 5,
@@ -71,6 +99,6 @@ const styles = StyleSheet.create({
   },
   cardDetailText: {
     color: "#fff",
-    textAlign: 'center'
+    textAlign: "center",
   },
 });

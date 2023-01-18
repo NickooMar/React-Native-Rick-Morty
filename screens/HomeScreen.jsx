@@ -24,15 +24,19 @@ const HomeScreen = () => {
         />
         <View style={styles.buttonContainer}>
           <TouchableOpacity
-            style={{...styles.characterButton, backgroundColor: '#B8C480'}}
-            onPress={() => navigation.navigate('Characters')}
+            style={{ ...styles.characterButton, backgroundColor: "#B8C480" }}
+            onPress={() => navigation.navigate("Characters")}
           >
             <Text style={{ color: "#fff", fontSize: 16 }}>Characters</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{...styles.characterButton, backgroundColor: '#922D50'}}>
+          <TouchableOpacity
+            style={{ ...styles.characterButton, backgroundColor: "#922D50" }}
+          >
             <Text style={{ color: "#fff", fontSize: 16 }}>Characters</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{...styles.characterButton, backgroundColor: '#3C1B43'}}>
+          <TouchableOpacity
+            style={{ ...styles.characterButton, backgroundColor: "#3C1B43" }}
+          >
             <Text style={{ color: "#fff", fontSize: 16 }}>Characters</Text>
           </TouchableOpacity>
         </View>

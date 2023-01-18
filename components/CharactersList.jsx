@@ -1,33 +1,76 @@
-import { View, Text, FlatList, RefreshControl } from "react-native";
-import React, { useState, useEffect } from "react";
+import { View, FlatList, StyleSheet, ActivityIndicator } from "react-native";
+import React, { useState, useEffect, Fragment } from "react";
+
+import { useNavigation } from "@react-navigation/native";
 
 import CharacterItem from "./CharacterItem";
-
 import { getCharacters } from "../api/api";
 
 const CharactersList = () => {
-  const [characters, setCharacters] = useState();
+  // const [characters, setCharacters] = useState();
+  // useEffect(() => {
+  //   const loadCharacters = async () => {
+  //     const fetchedCharacters = await getCharacters();
+  //     setCharacters(fetchedCharacters.results);
+  //   };
+  //   loadCharacters();
+  // }, []);
+
+  const [data, setData] = useState([]);
+  const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
+
+  const getData = async () => {
+    const apiURL = `https://rickandmortyapi.com/api/character/?page=${page}`;
+    fetch(apiURL)
+      .then((res) => res.json())
+      .then((resJson) => {
+        setData(data.concat(resJson?.results));
+        setIsLoading(false);
+      });
+  };
 
   useEffect(() => {
-    const loadCharacters = async () => {
-      const fetchedCharacters = await getCharacters();
-      setCharacters(fetchedCharacters.results);
-    };
-    loadCharacters();
+    setIsLoading(true);
+    getData();
   }, []);
 
+  const handleLoadMore = async () => {
+    setPage(page + 1);
+    getData();
+    setIsLoading(true);
+  };
+
+  const renderFooter = () =>
+    isLoading ? (
+      <View style={styles.loader}>
+        <ActivityIndicator size="large" />
+      </View>
+    ) : null;
+
   return (
-    <FlatList
-      style={{ width: "100%" }}
-      data={characters}
-      keyExtractor={(item) => item.id}
-      renderItem={({ item }) => <CharacterItem character={item} />}
-      contentContainerStyle={{ alignSelf: "center" }}
-      numColumns={2}
-      showsVerticalScrollIndicator={false}
-      showsHorizontalScrollIndicator={false}
-    />
+    <Fragment>
+      <View>
+        <FlatList
+          data={data}
+          renderItem={({ item }) => <CharacterItem character={item} />}
+          keyExtractor={(item, index) => index.toString()}
+          numColumns={2}
+          removeClippedSubviews={false}
+          onEndReached={handleLoadMore}
+          onEndReachedThreshold={0}
+          ListFooterComponent={renderFooter}
+        />
+      </View>
+    </Fragment>
   );
 };
 
 export default CharactersList;
+
+const styles = StyleSheet.create({
+  loader: {
+    marginTop: 10,
+    alignItems: "center",
+  },
+});

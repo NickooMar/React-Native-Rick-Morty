@@ -7,6 +7,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 // Screens
 import HomeScreen from "./screens/HomeScreen";
 import Characters from "./screens/Characters";
+import CharacterDetail from "./components/CharacterDetail";
 
 const Stack = createNativeStackNavigator();
 
@@ -41,6 +42,11 @@ export default function App() {
               headerTitleStyle: { color: "#fff" },
             })}
           />
+          <Stack.Screen name="CharacterDetail" component={CharacterDetail} options={() => ({
+              title: "Character Detail",
+              headerStyle: { backgroundColor: "#B8C480" },
+              headerTitleStyle: { color: "#fff" },
+            })} />
         </Stack.Navigator>
       </NavigationContainer>
   );
