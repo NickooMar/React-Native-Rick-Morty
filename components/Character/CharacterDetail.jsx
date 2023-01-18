@@ -1,7 +1,7 @@
 import { View, Text, StyleSheet, Image } from "react-native";
 import React, { useEffect, useState } from "react";
 
-import { getCharacter } from "../api/api";
+import { getCharacter } from "../../api/api";
 
 const CharacterDetail = ({ route }) => {
   const [character, setCharacter] = useState();
@@ -97,10 +97,9 @@ const styles = StyleSheet.create({
   },
   cardStatusTagDeath: {
     position: "absolute",
+    padding: 8,
     marginTop: 10,
     marginLeft: 20,
-    padding: 2,
-    margin: 5,
     color: "white",
     borderRadius: 10,
     fontSize: 18,

@@ -1,21 +1,10 @@
 import { View, FlatList, StyleSheet, ActivityIndicator } from "react-native";
 import React, { useState, useEffect, Fragment } from "react";
 
-import { useNavigation } from "@react-navigation/native";
-
 import CharacterItem from "./CharacterItem";
-import { getCharacters } from "../api/api";
+import { getCharacters } from "../../api/api";
 
 const CharactersList = () => {
-  // const [characters, setCharacters] = useState();
-  // useEffect(() => {
-  //   const loadCharacters = async () => {
-  //     const fetchedCharacters = await getCharacters();
-  //     setCharacters(fetchedCharacters.results);
-  //   };
-  //   loadCharacters();
-  // }, []);
-
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
