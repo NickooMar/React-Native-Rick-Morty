@@ -130,6 +130,9 @@ const HomeScreen = () => {
                 ...styles.cardContentButton,
                 backgroundColor: "#97CE4C",
               }}
+              onPress={() => {
+                navigation.navigate("Episodes");
+              }}
             >
               <Text
                 style={{

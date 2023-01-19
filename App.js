@@ -8,6 +8,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import HomeScreen from "./screens/HomeScreen";
 import Characters from "./screens/Characters";
 import Locations from "./screens/Locations";
+import Episodes from "./screens/Episodes";
 import CharacterDetail from "./components/Character/CharacterDetail";
 
 // Fonts
@@ -69,6 +70,21 @@ export default function App() {
           options={() => ({
             title: "Locations",
             headerStyle: { backgroundColor: "#8e44ad" },
+            headerTitleStyle: {
+              color: "#F0EDEE",
+              fontSize: 26,
+              alignSelf: "center",
+              fontFamily: "SourceSansPro_SemiBold",
+            },
+            headerTintColor: "white",
+          })}
+        />
+        <Stack.Screen
+          name="Episodes"
+          component={Episodes}
+          options={() => ({
+            title: "Episodes",
+            headerStyle: { backgroundColor: "#97CE4C" },
             headerTitleStyle: {
               color: "#F0EDEE",
               fontSize: 26,

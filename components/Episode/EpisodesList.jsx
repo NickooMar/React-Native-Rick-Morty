@@ -5,21 +5,17 @@ import {
   ActivityIndicator,
   Text,
 } from "react-native";
-import React, { useEffect, useState, Fragment } from "react";
+import React, { useState, useEffect, Fragment } from "react";
 
-import { useNavigation } from "@react-navigation/native";
-import { getLocations } from "../../api/api";
+import { getEpisodes } from "../../api/api";
 
-// Fonts
 import { useFonts } from "expo-font";
-import LocationItem from "./LocationItem";
+import EpisodeItem from "./EpisodeItem";
 
-const LocationsList = () => {
+const EpisodesList = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
-  const navigation = useNavigation();
-
 
   const [fontsLoaded] = useFonts({
     SourceSansPro_Black: require("../../assets/fonts/SourceSansPro-Black.ttf"),
@@ -35,7 +31,7 @@ const LocationsList = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getLocations(page).then((res) => {
+    getEpisodes(page).then((res) => {
       setData(data.concat(res?.results));
       setIsLoading(false);
       setPage(page + 1);
@@ -43,7 +39,7 @@ const LocationsList = () => {
   }, []);
 
   const handleLoadMore = async () => {
-    await getLocations(page).then((res) => {
+    await getEpisodes(page).then((res) => {
       setData(data.concat(res?.results));
       setIsLoading(false);
       setPage(page + 1);
@@ -51,24 +47,20 @@ const LocationsList = () => {
     setIsLoading(true);
   };
 
-  const renderFooter = () =>
+  const renderFooter = () => {
     isLoading ? (
       <View style={styles.loader}>
         <ActivityIndicator size="large" />
       </View>
     ) : null;
+  };
 
   return (
     <Fragment>
       <View>
-        <View style={styles.backgroundContainer}>
-          <View style={{ backgroundColor: "#8360c3" }}>
-            <Text style={styles.textInBackgroundImage}>Select a Location</Text>
-          </View>
-        </View>
         <FlatList
           data={data}
-          renderItem={({ item }) => <LocationItem location={item} />}
+          renderItem={({ item }) => <EpisodeItem episode={item} />}
           keyExtractor={(_, index) => index.toString()}
           removeClippedSubviews={false}
           onEndReached={handleLoadMore}
@@ -80,7 +72,7 @@ const LocationsList = () => {
   );
 };
 
-export default LocationsList;
+export default EpisodesList;
 
 const styles = StyleSheet.create({
   loader: {
