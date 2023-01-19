@@ -9,7 +9,8 @@ import {
 } from "react-native";
 import React, { Fragment } from "react";
 
-// import backgroundImage from "../assets/background.png";
+import homescreenLocationsImage from "../assets/images/homescreenLocationsImage.jpg";
+import homescreenEpisodesImage from "../assets/images/homescreenEpisodes.png";
 
 import { useNavigation } from "@react-navigation/native";
 
@@ -85,9 +86,7 @@ const HomeScreen = () => {
         <View style={styles.card}>
           <Image
             style={styles.cardContentImage}
-            source={{
-              uri: "https://i.ytimg.com/vi/UQQ6S9DxXBk/maxresdefault.jpg",
-            }}
+            source={homescreenLocationsImage}
           />
           <View style={{ width: "60%" }}>
             <Text style={styles.cardContentTitle}>Locations</Text>
@@ -98,8 +97,9 @@ const HomeScreen = () => {
             <TouchableOpacity
               style={{
                 ...styles.cardContentButton,
-                backgroundColor: "#2a1cd6",
+                backgroundColor: "#8e44ad",
               }}
+              onPress={() => navigation.navigate("Locations")}
             >
               <Text
                 style={{
@@ -117,9 +117,7 @@ const HomeScreen = () => {
         <View style={styles.card}>
           <Image
             style={styles.cardContentImage}
-            source={{
-              uri: "https://assets1.ignimgs.com/2018/06/22/the-ricks-must-be-crazy-1529699545274.png",
-            }}
+            source={homescreenEpisodesImage}
           />
           <View style={{ width: "60%", zIndex: -10 }}>
             <Text style={styles.cardContentTitle}>Episodes</Text>

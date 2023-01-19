@@ -6,18 +6,22 @@ import {
   ImageBackground,
   Text,
 } from "react-native";
-import React, { useState, useEffect, Fragment } from "react";
+import React, { useEffect, useState, Fragment } from "react";
 
-import CharacterItem from "./CharacterItem";
-import { getCharacters } from "../../api/api";
+import { useNavigation } from "@react-navigation/native";
+import { getLocations } from "../../api/api";
 
 // Fonts
 import { useFonts } from "expo-font";
+import LocationItem from "./LocationItem";
 
-const CharactersList = () => {
+const LocationsList = () => {
   const [data, setData] = useState([]);
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
+  const navigation = useNavigation();
+
+  console.log(data);
 
   const [fontsLoaded] = useFonts({
     SourceSansPro_Black: require("../../assets/fonts/SourceSansPro-Black.ttf"),
@@ -33,7 +37,7 @@ const CharactersList = () => {
 
   useEffect(() => {
     setIsLoading(true);
-    getCharacters(page).then((res) => {
+    getLocations(page).then((res) => {
       setData(data.concat(res?.results));
       setIsLoading(false);
       setPage(page + 1);
@@ -41,7 +45,7 @@ const CharactersList = () => {
   }, []);
 
   const handleLoadMore = async () => {
-    await getCharacters(page).then((res) => {
+    await getLocations(page).then((res) => {
       setData(data.concat(res?.results));
       setIsLoading(false);
       setPage(page + 1);
@@ -60,16 +64,13 @@ const CharactersList = () => {
     <Fragment>
       <View>
         <View style={styles.backgroundContainer}>
-          <ImageBackground
-            source={require("../../assets/images/Banner_background.png")}
-            style={styles.backgroundImage}
-          >
-            <Text style={styles.textInBackgroundImage}>Select a character</Text>
-          </ImageBackground>
+          <View style={{ backgroundColor: "#8360c3" }}>
+            <Text style={styles.textInBackgroundImage}>Select a Location</Text>
+          </View>
         </View>
         <FlatList
           data={data}
-          renderItem={({ item }) => <CharacterItem character={item} />}
+          renderItem={({ item }) => <LocationItem location={item} />}
           keyExtractor={(_, index) => index.toString()}
           removeClippedSubviews={false}
           onEndReached={handleLoadMore}
@@ -81,7 +82,7 @@ const CharactersList = () => {
   );
 };
 
-export default CharactersList;
+export default LocationsList;
 
 const styles = StyleSheet.create({
   loader: {
